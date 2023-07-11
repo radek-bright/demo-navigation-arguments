@@ -1,7 +1,7 @@
 package dev.bright.blogpost.demo.navigationargumentdemo.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -19,7 +19,7 @@ fun RootNavigation() {
         startDestination = "ScreenA",
     ) {
         composable(route = "ScreenA") {
-            ScreenA(viewModel()) { greetingNameArg ->
+            ScreenA(hiltViewModel()) { greetingNameArg ->
                 navController.navigate("ScreenB?greetingName=$greetingNameArg")
             }
         }
@@ -30,7 +30,7 @@ fun RootNavigation() {
                 navArgument("greetingName") { type = NavType.StringType },
             ),
         ) {
-            ScreenB(viewModel())
+            ScreenB(hiltViewModel())
         }
     }
 }
